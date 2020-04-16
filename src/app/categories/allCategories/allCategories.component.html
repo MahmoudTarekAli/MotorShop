@@ -1,0 +1,108 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+<!--                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+<!--                    <ul class="breadcrumb breadcrumb-style ">-->
+<!--                        <li class="breadcrumb-item">-->
+<!--                            <h4 class="page-title">الفئات</h4>-->
+<!--                        </li>-->
+<!--                        <li class="breadcrumb-item bcrumb-1">-->
+<!--                            <a routerLink="/dashboard/main">-->
+<!--                                <i class="fas fa-home"></i> Home</a>-->
+<!--                        </li>-->
+<!--                        <li class="breadcrumb-item bcrumb-2">-->
+<!--                            <a href="#" onClick="return false;">Doctors</a>-->
+<!--                        </li>-->
+<!--                        <li class="breadcrumb-item active">View</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <div class="materialTableHeader">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul class="header-buttons-left ml-0">
+                                            <li class="dropdown">
+                                                <h2>
+                                                    <strong>الفئات</strong></h2>
+                                            </li>
+                                            <li class="dropdown tbl-search-box">
+                                                <label><i
+                                                        class="material-icons search-icon">search</i></label>
+                                                <input placeholder="بحث" type="text" #filter
+                                                    class="browser-default search-field" aria-label="Search box">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <ul class="header-buttons">
+                                            <li>
+                                                <div class="icon-button-demo">
+                                                    <button mat-mini-fab color="primary" [routerLink]="'../add-product'">
+                                                        <mat-icon class="col-white">add</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="icon-button-demo">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-table #table [hidden]="(dataSource.loading$ | async) || dataSource.empty"
+                                       [dataSource]="dataSource" matSort class="mat-cell"> -->
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="id">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="name">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>الاسم</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+                                </ng-container>
+                                <!-- actions -->
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell class="pr-0" *matHeaderCellDef>خيارات</mat-header-cell>
+                                    <mat-cell *matCellDef="let element; let i=index;" class="pr-0">
+                                        <button mat-icon-button color="accent" class="btn-tbl-edit" (click)="UpdateCategory(element)">
+                                            <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
+                                        </button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+                              <mat-row *matRowDef="let element; columns: displayedColumns;"  matRipple
+                              >
+                              </mat-row>
+                            </mat-table>
+                          <div class="no__record">
+                            <ng-container *ngIf="dataSource.loading$ | async">
+                              <app-spinner></app-spinner>
+                              <h5>تحميل الفئات</h5>
+                            </ng-container>
+                            <div *ngIf="!(dataSource.loading$ | async) && dataSource.empty">
+                              <h5>
+                                {{ "لا يوجد فئات" }}
+                              </h5>
+                            </div>
+                          </div>
+                          <mat-paginator #paginator
+                                           showFirstLastButtons
+                                           [length]="categories"
+                                           [pageSize]="10">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,119 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">اضافة منتج</h4>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <form class="m-4" [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>االاسم</mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-error *ngIf="ProductForm.get('name').hasError('required')">
+                      برجاء ادخال الاسم
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>الكود</mat-label>
+                    <input type="number" matInput formControlName="code" required>
+                    <mat-error *ngIf="ProductForm.get('code').hasError('required')">
+                      برجاء ادخال الكود
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>المكان</mat-label>
+                    <input matInput formControlName="location" required>
+                    <mat-error *ngIf="ProductForm.get('location').hasError('required')">
+                      برجاء ادخال المكان
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>الفئه</mat-label>
+                    <mat-select placeholder="Select categories"  [(ngModel)]="selectedCategory"
+                                formControlName="category" required>
+                      <mat-option *ngFor="let element of categories; let i = index" [value]="element.id">
+                        {{ element.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="ProductForm.get('category').hasError('required')">
+                      برجاء ادخال الفئة
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>سعر الشراء</mat-label>
+                    <input type="number" matInput formControlName="purchasingPrice" required>
+                    <mat-error *ngIf="ProductForm.get('purchasingPrice').hasError('required')">
+                      برجاء ادخال سعر الشراء
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>سعر البيع</mat-label>
+                    <input type="number" matInput formControlName="sellingPrice" required>
+                    <mat-error *ngIf="ProductForm.get('sellingPrice').hasError('required')">
+                      برجاء ادخال سعر البيع
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>السعر بعد الضريبة</mat-label>
+                    <input type="number" matInput formControlName="priceWithTax" required>
+                    <mat-error *ngIf="ProductForm.get('priceWithTax').hasError('required')">
+                      برجاء ادخال سعر بعد الضريبة
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>الخصم</mat-label>
+                    <input type="number" matInput formControlName="discount" >
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <button class="mr-3" [disabled]="!ProductForm.valid " mat-raised-button
+                          color="primary">حفظ
+                  </button>
+                  <button type="button" mat-button (click)="cancel()">الغاء</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

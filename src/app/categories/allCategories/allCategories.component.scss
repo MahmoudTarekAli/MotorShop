@@ -1,0 +1,16 @@
+.no__record {
+  margin-top: 35px;
+  min-width: 100%;
+  transition: max-height 0.15s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+  h5 {
+    text-align: center;
+    position: relative;
+    line-height: 2em;
+}
+}

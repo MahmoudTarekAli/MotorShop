@@ -1,0 +1,78 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">اضافة فاتورة مشتريات</h4>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <form class="m-4" [formGroup]="PurchaseInvoiceForm">
+              <button style="margin-bottom: 10px" mat-raised-button class="save-product-button"
+                      (click)="AddInvoice()">اضف منتج للفاتورة
+              </button>
+              <div class="row">
+                <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>اسم العميل</mat-label>
+                    <input  matInput formControlName="dealerName">
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+              <div formArrayName="Form" *ngFor="let invoices of getCrew(); let i = index">
+                <div [formGroupName]="i">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-64 col-md-6 col-sm-12 mb-3">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>المنتج</mat-label>
+                        <mat-select placeholder="Select product"
+                                    formControlName="productId">
+                          <mat-option *ngFor="let element of products; let i = index" [value]="element.id">
+                            {{ element.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-3">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>الكمية</mat-label>
+                        <input type="number" matInput formControlName="qtn">
+                      </mat-form-field>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-3">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>السعر</mat-label>
+                        <input type="number" matInput formControlName="price">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <button class="mr-3" [disabled]="!PurchaseInvoiceForm.valid " mat-raised-button
+                          color="primary" (click)="onSubmit()">حفظ
+                  </button>
+                  <button type="button" mat-button (click)="cancel()">الغاء</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
